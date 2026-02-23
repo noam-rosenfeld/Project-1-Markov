@@ -72,6 +72,8 @@ std::string getRandomSuffix(const std::string prefixes[], const std::string suff
             count++;
         }
     }
+
+    return "";
 }
 
 
