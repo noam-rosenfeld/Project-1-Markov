@@ -25,7 +25,9 @@ int readWordsFromFile(string fileName, string words[], int maxWords) {
 
     int count = 0;
 
-    while (count < maxWords && inputFile >> words[count]) {
+    cout << count << endl;
+
+    while (count < maxWords /*&& inputFile >> words[count]*/) {
         count++;
         cout << count << endl;
     }
