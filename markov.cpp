@@ -19,17 +19,14 @@ string joinWords(const string words[], int startIndex, int count) {
 }
 
 int readWordsFromFile(string fileName, string words[], int maxWords) {
-    ifstream inputFile(fileName);
+    ifstream inputFile;
     inputFile.open(fileName);
     if(!inputFile.is_open()) { return -1; };
 
     int count = 0;
 
-    cout << count << endl;
-
-    while (count < maxWords /*&& inputFile >> words[count]*/) {
+    while (count < maxWords && inputFile >> words[count]) {
         count++;
-        cout << count << endl;
     }
 
     inputFile.close();
@@ -61,22 +58,24 @@ std::string getRandomSuffix(const std::string prefixes[], const std::string suff
             matchCount++;
         }
     }
-
-    if(matchCount == 0) { return ""; }
+    if(matchCount == 0) return "";
 
     srand(time(0));
     int pick = rand() % matchCount;
 
-    int count;
+    int count = 1;
 
     for(int i = 0; i < chainSize-1; i++) {
         if(prefixes[i] == currentPrefix) {
-            if(i == pick) {
+            cout << rand << endl;
+            if(count == pick) {
+                cout << suffixes[i] << endl;
                 return suffixes[i];
             }
             count++;
         }
     }
+    cout << "end" << endl;
 
     return "";
 }
@@ -94,7 +93,8 @@ std::string generateText(const std::string prefixes[], const std::string suffixe
     string currentPrefix = getRandomPrefix(prefixes, chainSize);
     string result = currentPrefix;
     for(int i = 0; i < numWords - order; i++) {
-        string currentSuffix = getRandomSuffix(prefixes, suffixes, chainSize, result);
+        cout << i << endl;
+        string currentSuffix = getRandomSuffix(prefixes, suffixes, chainSize, currentPrefix);
         if(currentSuffix == "") { break; }
 
         result += " " + currentSuffix;
