@@ -7,9 +7,11 @@ int main() {
     int order;
     int length;
     std::string fileName;
-    std::string words[1000];
-    std::string suffixes[1000];
-    std::string prefixes[1000];
+    std::string words[10000];
+    std::string suffixes[10000];
+    std::string prefixes[10000];
+
+    srand(time(NULL));
 
     // Prompting
     std::cout << "Declare the file name: ";
@@ -30,16 +32,11 @@ int main() {
     int count2 = buildMarkovChain(words, count1, order, prefixes, suffixes, count1);
     std::cout << "- Built markov chain\n" << std::endl;
 
-    for (int i = 0; i < 20 && i < count2; i++) {
-        std::cout << "[" << prefixes[i] << "] -> [" << suffixes[i] << "]" << std::endl;
-    }
+    // for (int i = 0; i < 20 && i < count2; i++) {
+    //     std::cout << "[" << prefixes[i] << "] -> [" << suffixes[i] << "]" << std::endl;
+    // }
 
     std::cout << std::endl;
-
-    std::string one = getRandomPrefix(prefixes, count2);
-    std::string two = getRandomSuffix(prefixes, suffixes, count2, one);
-    std::cout << one << std::endl;
-    std::cout << two << std::endl;
 
     std::string chain = generateText(prefixes, suffixes, count2, order, length);
     std::cout << chain << std::endl;

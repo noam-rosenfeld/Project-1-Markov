@@ -1,3 +1,0 @@
-The cat sat down. 
-The cat sits up. 
-The dog sat and sits down. 
